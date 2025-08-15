@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>iFoundInLight | Portafolio Completo</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at center, #ffffff, #e0e0e0 80%);
+      color: #000000;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+      transition: background-color 0.2s;
+    }
+    header {
+      background-color: rgba(255,255,255,0.8);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #222;
+      text-shadow: 0 0 10px #03a9f4;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: rgba(255,255,255,0.8);
+      position: relative;
+      z-index: 10;
+    }
+    nav button {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      color: #000;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    nav button:hover,
+    nav button.active {
+      background-color: #03a9f4;
+      color: #fff;
+    }
+    .tab-content {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+      position: relative;
+      z-index: 10;
+    }
+    .card {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+    .card h2 {
+      color: #222;
+      font-weight: bold;
+    }
+    .tag {
+      background-color: #03a9f4; 
+      color: #fff;            
+      padding: 0.2rem 0.6rem;
+      margin-right: 0.4rem;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      display: inline-block;
+      font-weight: bold;
+    }
+    a {
+      color: #03a9f4;
+      text-decoration: none;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: rgba(255,255,255,0.8);
+      color: #444;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 10;
+    }
+    #lightning {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>iFoundInLight</h1>
+  <p>Portafolio de configurador de Minecraft</p>
+</header>
+<nav></nav>
+<section class="tab-content active">
+  <div class="card">
+    <h2>🧪 Sobre mí</h2>
+    <p>Me especializo en BoxPvP, siempre trato de hacer mi mejor trabajo y trato de hacer siempre lo mejor para todos los usuarios que jueguen en tú servidor.</p>
+  </div>
+  <div class="card">
+    <h2>🌟 Servidor destacado</h2>
+    <p><strong>⚔️AssaultMc⚔️</strong></p>
+    <p>Una network única que ofrece modalidades como:</p>
+    <span class="tag">SurvivalPvP</span>
+    <span class="tag">WorldBox</span>
+    <span class="tag">FnafBox</span>
+    <span class="tag">FarmBox</span>
+  </div>
+  <div class="card">
+    <h2>📩 Contacto</h2>
+    <p>💬 Discord: <strong>ifoundinlight</strong></p>
+    <p>📧 Email: <a href="mailto:manuelzambonino2015@gmail.com"><strong>manuelzambonino2015@gmail.com</strong></a></p>
+  </div>
+</section>
+<footer>
+  © 2025 iFoundInLight | Portafolio Completo
+</footer>
+<canvas id="lightning"></canvas>
+<script>
+  const canvas = document.getElementById('lightning');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  function flashScreen() {
+    document.body.style.backgroundColor = "#b3e5fc";
+    setTimeout(() => {
+      document.body.style.backgroundColor = "";
+    }, 100);
+  }
+  function drawLightning() {
+    ctx.clearRect(0, 0, w, h);
+    if (Math.random() < 0.03) {
+      flashScreen();
+      ctx.strokeStyle = `rgba(3, 169, 244, ${Math.random()})`;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      let x = Math.random() * w;
+      ctx.moveTo(x, 0);
+      for (let y = 0; y < h; y += 20) {
+        x += Math.random() * 40 - 20;
+        ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+    requestAnimationFrame(drawLightning);
+  }
+  drawLightning();
+</script>
+</body>
+</html>
